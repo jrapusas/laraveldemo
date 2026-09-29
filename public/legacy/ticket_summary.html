@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ConnectWave — ticket queue report (legacy PHP)</title>
+  <link rel="stylesheet" href="/legacy/legacy.css?v=14" />
+  <script src="/legacy/jquery.min.js?v=3.7.1"></script>
+  <script src="/legacy/legacy-scroll.js?v=14"></script>
+  <script src="/legacy/legacy-table-sort.js?v=14"></script>
+</head>
+<body data-page-heading="page-heading">
+  <div class="legacy-wrap">
+    <h1 id="page-heading">Ticket queue report (legacy PHP)</h1>
+    <p class="legacy-meta">Vanilla PHP JSON at <code>/legacy/ticket_summary.php</code> — same ticket volume as the Laravel desk (100 per page).</p>
+    <p class="legacy-meta legacy-stack-nav">
+      <a href="/">Laravel Desk</a>
+      · <a href="/portfolio">Portfolio</a>
+      · <span aria-current="page">Legacy PHP</span>
+      · <a href="/legacy/admin.html">Legacy jQuery</a>
+    </p>
+
+    <div id="report-controls" class="legacy-toolbar">
+      <div class="legacy-field legacy-field--action">
+        <span class="legacy-field-label">Report</span>
+        <button type="button" id="reload" class="legacy-control">Reload</button>
+      </div>
+    </div>
+
+    <div class="legacy-pager" aria-label="Report pagination">
+      <button type="button" id="page-prev" class="legacy-control" disabled>Previous</button>
+      <span id="meta" class="legacy-pager-stats" aria-live="polite"></span>
+      <button type="button" id="page-next" class="legacy-control" disabled>Next</button>
+    </div>
+
+    <p id="error" class="legacy-err" role="alert" hidden></p>
+
+    <div class="legacy-scroll">
+      <table class="legacy-data-table" id="report-table">
+        <caption class="legacy-sr-only">Tickets (newest first, paginated)</caption>
+        <thead>
+          <tr>
+            <th scope="col" class="legacy-col-ref" data-sort-col="0" data-sort-type="text" aria-sort="none"><button type="button" class="legacy-sort-btn">Ref <span class="legacy-sort-glyph" aria-hidden="true"></span></button></th>
+            <th scope="col" class="legacy-col-account legacy-hide-md" data-sort-col="1" data-sort-type="text" aria-sort="none"><button type="button" class="legacy-sort-btn">Account <span class="legacy-sort-glyph" aria-hidden="true"></span></button></th>
+            <th scope="col" class="legacy-col-type legacy-hide-lg" data-sort-col="2" data-sort-type="text" aria-sort="none"><button type="button" class="legacy-sort-btn">Type <span class="legacy-sort-glyph" aria-hidden="true"></span></button></th>
+            <th scope="col" class="legacy-col-subject" data-sort-col="3" data-sort-type="text" aria-sort="none"><button type="button" class="legacy-sort-btn">Subject <span class="legacy-sort-glyph" aria-hidden="true"></span></button></th>
+            <th scope="col" class="legacy-col-priority legacy-hide-sm" data-sort-col="4" data-sort-type="text" aria-sort="none"><button type="button" class="legacy-sort-btn">Priority <span class="legacy-sort-glyph" aria-hidden="true"></span></button></th>
+            <th scope="col" class="legacy-col-status" data-sort-col="5" data-sort-type="text" aria-sort="none"><button type="button" class="legacy-sort-btn">Status <span class="legacy-sort-glyph" aria-hidden="true"></span></button></th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+  </div>
+  <script src="/legacy/ticket_summary.js?v=14"></script>
+</body>
+</html>

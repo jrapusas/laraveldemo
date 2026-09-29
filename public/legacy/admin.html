@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ConnectWave — staff ticket queue (legacy)</title>
+  <link rel="stylesheet" href="/legacy/legacy.css?v=14" />
+  <script src="/legacy/jquery.min.js?v=3.7.1"></script>
+  <script src="/legacy/legacy-scroll.js?v=14"></script>
+  <script src="/legacy/legacy-table-sort.js?v=14"></script>
+</head>
+<body data-page-heading="page-heading">
+  <div class="legacy-wrap">
+    <h1 id="page-heading">Staff ticket queue (legacy jQuery)</h1>
+    <p class="legacy-meta">Older admin skin — same ConnectWave sample data via <code>/api/v1/tickets</code>.</p>
+    <p class="legacy-meta legacy-stack-nav">
+      <a href="/">Laravel Desk</a>
+      · <a href="/portfolio">Portfolio</a>
+      · <a href="/legacy/ticket_summary.html">Legacy PHP</a>
+      · <span aria-current="page">Legacy jQuery</span>
+    </p>
+
+    <h2 class="legacy-sr-only">Queue</h2>
+    <div id="queue-controls" class="legacy-toolbar">
+      <label class="legacy-field" for="filter-status">
+        <span class="legacy-field-label">Status</span>
+        <select id="filter-status" class="legacy-control" aria-label="Filter by status">
+          <option value="">All</option>
+          <option value="open">Open</option>
+          <option value="in_progress">In progress</option>
+          <option value="waiting">Waiting</option>
+          <option value="resolved">Resolved</option>
+        </select>
+      </label>
+      <label class="legacy-field" for="filter-type">
+        <span class="legacy-field-label">Type</span>
+        <select id="filter-type" class="legacy-control" aria-label="Filter by type">
+          <option value="">All</option>
+          <option value="fault">Fault</option>
+          <option value="provisioning">Provisioning</option>
+          <option value="number_port">Number port</option>
+        </select>
+      </label>
+      <label class="legacy-field" for="filter-q">
+        <span class="legacy-field-label">Search</span>
+        <input id="filter-q" class="legacy-control" type="search" placeholder="Ref or subject" aria-label="Search tickets" />
+      </label>
+      <div class="legacy-field legacy-field--action">
+        <span class="legacy-field-label" aria-hidden="true">&nbsp;</span>
+        <button type="button" id="reload" class="legacy-control">Reload</button>
+      </div>
+      <div class="legacy-field legacy-field--action">
+        <span class="legacy-field-label" aria-hidden="true">&nbsp;</span>
+        <button type="button" id="reset-filters" class="legacy-control">Reset</button>
+      </div>
+    </div>
+
+    <div class="legacy-pager" aria-label="Ticket list pagination">
+      <button type="button" id="page-prev" class="legacy-control" disabled>Previous</button>
+      <span id="stats" class="legacy-pager-stats" aria-live="polite"></span>
+      <button type="button" id="page-next" class="legacy-control" disabled>Next</button>
+    </div>
+
+    <p id="error" class="legacy-err" role="alert" hidden></p>
+    <div id="ticket-queue" class="legacy-scroll">
+      <table class="legacy-data-table">
+        <caption class="legacy-sr-only">Ticket queue (legacy view)</caption>
+        <thead>
+          <tr>
+            <th scope="col" class="legacy-col-ref" data-sort="reference" aria-sort="none"><button type="button" class="legacy-sort-btn">Ref <span class="legacy-sort-glyph" aria-hidden="true"></span></button></th>
+            <th scope="col" class="legacy-col-account legacy-hide-md" data-sort="account" aria-sort="none"><button type="button" class="legacy-sort-btn">Account <span class="legacy-sort-glyph" aria-hidden="true"></span></button></th>
+            <th scope="col" class="legacy-col-type legacy-hide-lg" data-sort="type" aria-sort="none"><button type="button" class="legacy-sort-btn">Type <span class="legacy-sort-glyph" aria-hidden="true"></span></button></th>
+            <th scope="col" class="legacy-col-subject" data-sort="subject" aria-sort="none"><button type="button" class="legacy-sort-btn">Subject <span class="legacy-sort-glyph" aria-hidden="true"></span></button></th>
+            <th scope="col" class="legacy-col-priority legacy-hide-sm" data-sort="priority" aria-sort="none"><button type="button" class="legacy-sort-btn">Priority <span class="legacy-sort-glyph" aria-hidden="true"></span></button></th>
+            <th scope="col" class="legacy-col-status" data-sort="status" aria-sort="none"><button type="button" class="legacy-sort-btn">Status <span class="legacy-sort-glyph" aria-hidden="true"></span></button></th>
+            <th scope="col" class="legacy-col-open"><span class="legacy-sr-only">Open ticket</span></th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="/legacy/admin.js?v=9"></script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+/* Floating back-to-top — linked on Vue shell + bundled via legacy.css */
+.back-to-top {
+  position: fixed;
+  top: auto;
+  left: auto;
+  right: max(1rem, env(safe-area-inset-right, 0px));
+  bottom: max(1rem, env(safe-area-inset-bottom, 0px));
+  z-index: 1000;
+  margin: 0;
+  width: auto;
+  max-width: calc(100vw - 2rem);
+  min-height: 2.75rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid #1e293b;
+  border-radius: 9999px;
+  background: #0f172a;
+  color: #22d3ee;
+  font: inherit;
+  font-size: 0.875rem;
+  line-height: 1.25;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgb(0 0 0 / 0.45);
+}
+
+.back-to-top:hover {
+  color: #f1f5f9;
+  border-color: #22d3ee;
+}
+
+.back-to-top:focus-visible {
+  outline: 2px solid #22d3ee;
+  outline-offset: 2px;
+}
+
+.back-to-top[hidden] {
+  display: none !important;
+}

@@ -1,0 +1,24 @@
+{
+    "$schema": "https://www.schemastore.org/package.json",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "build": "vite build && npm run copy:legacy-vendor",
+        "copy:legacy-vendor": "cp node_modules/jquery/dist/jquery.min.js public/legacy/jquery.min.js",
+        "dev": "vite",
+        "postinstall": "npm run copy:legacy-vendor"
+    },
+    "dependencies": {
+        "jquery": "^3.7.1",
+        "vue": "^3.5.13"
+    },
+    "devDependencies": {
+        "@tailwindcss/vite": "^4.0.0",
+        "@vitejs/plugin-vue": "^6.0.0",
+        "axios": "^1.11.0",
+        "concurrently": "^9.0.1",
+        "laravel-vite-plugin": "^2.0.0",
+        "tailwindcss": "^4.0.0",
+        "vite": "^7.0.7"
+    }
+}

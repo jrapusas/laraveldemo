@@ -1,0 +1,24 @@
+# Optional: local MySQL to match production (default local dev uses SQLite in .env.example).
+# Set DB_CONNECTION=mysql in .env, then: docker compose up -d
+
+services:
+  mysql:
+    image: mysql:8.4
+    restart: unless-stopped
+    ports:
+      - "${FORWARD_DB_PORT:-3307}:3306"
+    environment:
+      MYSQL_DATABASE: "${DB_DATABASE:-uc_service_desk}"
+      MYSQL_USER: "${DB_USERNAME:-uc_demo}"
+      MYSQL_PASSWORD: "${DB_PASSWORD:-secret}"
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD:-secret}"
+    volumes:
+      - uc-service-desk-mysql:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uroot", "-p${MYSQL_ROOT_PASSWORD:-secret}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  uc-service-desk-mysql:

@@ -1,0 +1,154 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+
+    --color-desk-bg: #020617;
+    --color-desk-surface: #0f172a;
+    --color-desk-border: #1e293b;
+    --color-desk-muted: #94a3b8;
+    --color-desk-accent: #22d3ee;
+    --color-desk-accent-hover: #06b6d4;
+}
+
+@layer base {
+    html {
+        color-scheme: dark;
+    }
+
+    body {
+        @apply bg-slate-950 text-slate-100 antialiased;
+    }
+
+    ::selection {
+        @apply bg-cyan-900/80 text-cyan-50;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
+        }
+    }
+}
+
+@layer components {
+    .desk-control {
+        @apply box-border h-11 w-full min-w-0 rounded-md border border-slate-700 bg-slate-950 px-3 text-sm text-slate-100;
+    }
+
+    :is(input, textarea).desk-control {
+        @apply py-2 text-base sm:text-sm;
+    }
+
+    #app select,
+    select.desk-select {
+        appearance: none;
+        height: auto;
+        min-height: 2.75rem;
+        padding-block: 0.5rem;
+        padding-right: 2.5rem;
+        line-height: 1.25;
+        background-color: #020617;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2394a3b8'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 0.75rem center;
+        background-size: 1rem;
+    }
+
+    #app select option,
+    select.desk-select option {
+        @apply bg-slate-950 text-slate-100;
+    }
+
+    #app select:focus,
+    select.desk-select:focus {
+        @apply relative z-20;
+    }
+
+    textarea.desk-textarea {
+        @apply h-auto min-h-[5.5rem] py-2 leading-normal;
+    }
+
+    .desk-toolbar {
+        @apply relative z-10 flex flex-wrap items-end gap-2;
+    }
+
+    .desk-pager {
+        @apply flex flex-nowrap items-center gap-2;
+    }
+
+    .desk-pager-stats {
+        @apply shrink-0 whitespace-nowrap tabular-nums;
+    }
+
+    main h2[id$='-heading'] {
+        scroll-margin-top: 0;
+    }
+
+    .desk-data-table {
+        @apply w-full table-auto text-left text-sm;
+    }
+
+    .desk-data-table thead th {
+        @apply sticky top-0 z-[1] bg-slate-900;
+        scroll-margin-top: 0.5rem;
+    }
+
+    .desk-data-table :is(th, td) {
+        @apply align-middle whitespace-nowrap overflow-visible;
+        text-overflow: clip;
+    }
+
+    .desk-data-table :is(th.desk-col-subject, td.desk-col-subject) {
+        @apply w-[40%] whitespace-normal break-words overflow-visible;
+        overflow-wrap: anywhere;
+        text-overflow: clip;
+    }
+
+    .desk-data-table td.desk-col-subject :is(a, button) {
+        @apply inline min-h-0 whitespace-normal break-words;
+    }
+
+    .desk-data-table .desk-sort-btn {
+        @apply h-auto min-h-11 text-left whitespace-nowrap overflow-visible;
+        text-overflow: clip;
+    }
+
+    .desk-data-table :is(th.desk-col-subject, td.desk-col-subject) .desk-sort-btn {
+        @apply whitespace-normal;
+    }
+
+    .desk-data-table :is(th.desk-money, td.desk-money) {
+        @apply text-right tabular-nums;
+    }
+
+    .desk-sort-btn {
+        @apply rounded-sm font-medium text-slate-400 hover:text-slate-200;
+    }
+
+    /* Up-down arrow as text (U+2195 + text presentation); avoids macOS color emoji glyph. */
+    .desk-sort-glyph::before {
+        content: '\2195\FE0E';
+        font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 1;
+    }
+
+    .desk-data-table th[aria-sort='ascending'] .desk-sort-btn,
+    .desk-data-table th[aria-sort='descending'] .desk-sort-btn {
+        @apply text-slate-200;
+    }
+
+}
